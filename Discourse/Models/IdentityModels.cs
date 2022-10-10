@@ -1,4 +1,7 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -16,6 +19,16 @@ namespace Discourse.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        // Custom Fields
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public DateTime BirthDate { get; set; }
+        [DefaultValue("false")]
+        public bool IsBanned { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
