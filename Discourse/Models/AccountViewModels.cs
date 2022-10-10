@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Discourse.Models
@@ -65,6 +66,20 @@ namespace Discourse.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Date of Birth")]
+        [MeetsMinimumAge(16, ErrorMessage = "Must be 16 years or older to register.")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime BirthDate { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +94,28 @@ namespace Discourse.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class MeetsMinimumAge : ValidationAttribute
+    {
+        int _minAge;
+
+        public MeetsMinimumAge(int minAge)
+        {
+            _minAge = minAge;
+        }
+
+        public override bool IsValid(object value)
+        {
+            DateTime birthDate;
+
+            if (DateTime.TryParse(value.ToString(), out birthDate))
+            {
+                return birthDate.AddYears(_minAge) < DateTime.Now;
+            }
+
+            return false;
+        }
     }
 
     public class ResetPasswordViewModel
