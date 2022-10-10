@@ -181,10 +181,15 @@
     <Compile Include="Migrations\202210101833114_AddedCustomFieldsToAspNetUsersTable.Designer.cs">
       <DependentUpon>202210101833114_AddedCustomFieldsToAspNetUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210101843497_CreatedPostsTable.cs" />
+    <Compile Include="Migrations\202210101843497_CreatedPostsTable.Designer.cs">
+      <DependentUpon>202210101843497_CreatedPostsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -267,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210101833114_AddedCustomFieldsToAspNetUsersTable.resx">
       <DependentUpon>202210101833114_AddedCustomFieldsToAspNetUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210101843497_CreatedPostsTable.resx">
+      <DependentUpon>202210101843497_CreatedPostsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
