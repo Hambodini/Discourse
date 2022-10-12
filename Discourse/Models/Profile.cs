@@ -18,7 +18,6 @@ namespace Discourse.Models
 
         public string Status { get; set; }
         public string Bio { get; set; }
-        public int MyProperty { get; set; }
         public string ProfilePicUrl { get; set; }
         public string BannerPicUrl { get; set; }
 
