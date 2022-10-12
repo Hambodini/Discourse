@@ -190,6 +190,10 @@
     <Compile Include="Migrations\202210101849165_CreatedCommentsTable.Designer.cs">
       <DependentUpon>202210101849165_CreatedCommentsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210122006504_CreatedProfilesTable.cs" />
+    <Compile Include="Migrations\202210122006504_CreatedProfilesTable.Designer.cs">
+      <DependentUpon>202210122006504_CreatedProfilesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -289,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210101849165_CreatedCommentsTable.resx">
       <DependentUpon>202210101849165_CreatedCommentsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210122006504_CreatedProfilesTable.resx">
+      <DependentUpon>202210122006504_CreatedProfilesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
