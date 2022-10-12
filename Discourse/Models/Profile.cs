@@ -25,7 +25,13 @@ namespace Discourse.Models
         public Profile()
         {
             ProfilePicUrl = "~/wwwroot/ProfilePic/NoPic.jpg";
-            BannerPicUrl = "~/wwwroot/ProfilePic/NoBanner.jpg";
+            BannerPicUrl = "~/wwwroot/bannerPic/NoBanner.jpg";
+        }
+
+        public Profile(string profilePicName, string bannerPicName)
+        {
+            ProfilePicUrl = "~/wwwroot/ProfilePic/" + profilePicName;
+            BannerPicUrl = "~/wwwroot/BannerPic/" + bannerPicName;
         }
     }
 }
