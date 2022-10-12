@@ -25,8 +25,6 @@ namespace Discourse.Models
         public Profile()
         {
             ProfilePicUrl = "~/wwwroot/ProfilePic/NoPic.jpg";
-
-            //Need no banner default picture still
             BannerPicUrl = "~/wwwroot/ProfilePic/NoBanner.jpg";
         }
     }
