@@ -9,11 +9,13 @@ namespace Discourse.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
+        [Authorize]
         public ActionResult Profile()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult Settings()
         {
             return View();
