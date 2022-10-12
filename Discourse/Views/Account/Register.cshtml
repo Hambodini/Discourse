@@ -28,7 +28,7 @@
             @Html.LabelFor(model => model.BirthDate, new { @class = "col-md-2 control-label" })
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.BirthDate, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "DD/MM/YYYY", maxlength = "100" })
+            @Html.TextBoxFor(model => model.BirthDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", placeholder = "MM/dd/YYYY", maxlength = "100" })
             @Html.ValidationMessageFor(model => model.BirthDate)
         </div>
     </div>
