@@ -1,7 +1,28 @@
-﻿
+﻿@model Discourse.Models.ProfileViewModel
 @{
     ViewBag.Title = "Profile";
+    var user = Model.User;
+    var profile = Model.UserProfile;
+    var name = user.FirstName + " " + user.LastName;
 }
 
-<h2>Profile</h2>
-<p><a class="btn btn-default" href="~/Profile/Settings">&#9881;</a></p>
+<div class="Banner">
+    <!--
+        Banner
+        Icon
+        Name
+    -->
+    @profile.BannerPicUrl
+    @profile.ProfilePicUrl
+    @name
+</div>
+<nav>
+    <p><a class="btn btn-default" href="~/Profile/Settings">&#9881;</a></p>
+</nav>
+<div class="Content">
+    <!--
+        Status
+        Bio
+        Feed
+    -->
+</div>
