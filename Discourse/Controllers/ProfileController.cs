@@ -15,9 +15,27 @@ namespace Discourse.Controllers
             _context = new ApplicationDbContext();
         }
 
+        [Authorize]
+        public ActionResult _Banner()
+        {
+            var post = new Post();
+            var id = User.Identity.GetUserId();
+            post.UserId = id;
+
+            //Get posts of logged in user
+            var userPosts = _context.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.TimeStamp).ToList();
+
+            var pvm = new ProfileViewModel();
+            pvm.User = _context.Users.Find(id);
+            pvm.UserProfile = _context.Profiles.Where(p => p.UserId == id).ToArray()[0];
+            pvm.UserPosts = userPosts;
+            pvm.NewPost = post;
+            return View(pvm);
+        }
+
         // GET: Profile
         [Authorize]
-        public ActionResult Profile()
+        public ActionResult Posts()
         {
             var post = new Post();
             var id = User.Identity.GetUserId();

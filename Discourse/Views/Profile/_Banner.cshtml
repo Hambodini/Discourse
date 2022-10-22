@@ -1,0 +1,27 @@
+﻿@{
+    var user = Model.User;
+    var profile = Model.UserProfile;
+    var name = user.FirstName + " " + user.LastName;
+}
+
+<div class="Banner">
+    <img id="Banner" src=@profile.BannerPicUrl>
+    <img id="Icon" src=@profile.ProfilePicUrl>
+    <br /><br /><br />
+    <h2><b>@name</b></h2>
+    <p>@profile.Bio</p>
+</div>
+<div class="navbar navbar-inverse navbar-header">
+    <div class="container">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-ce">
+                <li>@Html.ActionLink("Posts", "Posts", "Profile")</li>
+                <li>@Html.ActionLink("Likes", "Posts", "Profile")</li> <!-- WIP -->
+                <li>@Html.ActionLink("Friends", "Posts", "Profile")</li> <!-- WIP -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("⚙️", "Settings", "Profile")</li>
+            </ul>
+        </div>
+    </div>
+</div>

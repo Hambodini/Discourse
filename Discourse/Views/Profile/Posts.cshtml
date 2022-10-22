@@ -1,35 +1,14 @@
 ﻿@model Discourse.Models.ProfileViewModel
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Posts";
     var user = Model.User;
     var profile = Model.UserProfile;
     var name = user.FirstName + " " + user.LastName;
 }
 
-<div class="Banner">
-    <img id="Banner" src=@profile.BannerPicUrl>
-    <img src=@profile.ProfilePicUrl>
-    <br />
-    <h3><b>@name</b></h3>
-    <p>@profile.Bio</p>
-</div>
-<div class="navbar navbar-inverse navbar-header">
-    <div class="container">
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-ce">
-                <li>@Html.ActionLink("Posts", "Profile", "Profile")</li>
-                <li>@Html.ActionLink("Likes", "Profile", "Profile")</li> <!-- WIP -->
-                <li>@Html.ActionLink("Social", "Profile", "Profile")</li> <!-- WIP -->
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink("⚙️", "Settings", "Profile")</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="Content">
-    <h4><b>New Post</b></h4>
+@Html.Partial("_Banner")
+<div class="Posts">
+    <h3><b>Posts</b></h3>
     <details>
         <summary>Create</summary>
         @using (Html.BeginForm("NewPost", "Profile"))
@@ -72,17 +51,17 @@
             @Html.TextAreaFor(model => model.NewPost.Body);
             <br />
             <button type="submit">Submit</button>
-            <br /><br />
         }
     </details>
     <br />
 
-    <h4><b>Activity</b></h4>
     @foreach (var post in Model.UserPosts)
     {
-        <h5>@post.Title</h5>
-        <p>@post.Body</p>
-        <p><i>@post.TimeStamp</i></p>
+        <div class="Post">
+            <h4><b>@post.Title</b></h4>
+            <p>@post.Body</p>
+            <p><small><i>@post.TimeStamp</i></small></p>
+        </div>
 
     }
 </div>
