@@ -1,8 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "Profile Settings";
+    var user = Model.User;
+    var profile = Model.UserProfile;
+    var name = user.FirstName + " " + user.LastName;
 }
 
 @Html.Partial("_Banner")
-<h2>Profile Settings</h2>
-
+<div class="Settings">
+    <h3><b>Profile Settings</b></h3>
+    <p><a href="/Manage/Index">Account Settings</a></p>
+</div>
