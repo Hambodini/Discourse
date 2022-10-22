@@ -11,47 +11,51 @@
     <h3><b>Posts</b></h3>
     <details>
         <summary>Create</summary>
-        @using (Html.BeginForm("NewPost", "Profile"))
-        {
-            // Pass User info to NewPost action
-            @Html.HiddenFor(model => model.User.AccessFailedCount);
-            @Html.HiddenFor(model => model.User.BirthDate);
-            @Html.HiddenFor(model => model.User.Claims);
-            @Html.HiddenFor(model => model.User.Email);
-            @Html.HiddenFor(model => model.User.EmailConfirmed);
-            @Html.HiddenFor(model => model.User.FirstName);
-            @Html.HiddenFor(model => model.User.Id);
-            @Html.HiddenFor(model => model.User.IsBanned);
-            @Html.HiddenFor(model => model.User.LastName);
-            @Html.HiddenFor(model => model.User.LockoutEnabled);
-            @Html.HiddenFor(model => model.User.LockoutEndDateUtc);
-            @Html.HiddenFor(model => model.User.Logins);
-            @Html.HiddenFor(model => model.User.PasswordHash);
-            @Html.HiddenFor(model => model.User.PhoneNumber);
-            @Html.HiddenFor(model => model.User.PhoneNumberConfirmed);
-            @Html.HiddenFor(model => model.User.Roles);
-            @Html.HiddenFor(model => model.User.SecurityStamp);
-            @Html.HiddenFor(model => model.User.TwoFactorEnabled);
-            @Html.HiddenFor(model => model.User.UserName);
+        <br /><br />
+        <div class="NewPost">
+            @using (Html.BeginForm("NewPost", "Profile"))
+            {
+                // Pass User info to NewPost action
+                @Html.HiddenFor(model => model.User.AccessFailedCount);
+                @Html.HiddenFor(model => model.User.BirthDate);
+                @Html.HiddenFor(model => model.User.Claims);
+                @Html.HiddenFor(model => model.User.Email);
+                @Html.HiddenFor(model => model.User.EmailConfirmed);
+                @Html.HiddenFor(model => model.User.FirstName);
+                @Html.HiddenFor(model => model.User.Id);
+                @Html.HiddenFor(model => model.User.IsBanned);
+                @Html.HiddenFor(model => model.User.LastName);
+                @Html.HiddenFor(model => model.User.LockoutEnabled);
+                @Html.HiddenFor(model => model.User.LockoutEndDateUtc);
+                @Html.HiddenFor(model => model.User.Logins);
+                @Html.HiddenFor(model => model.User.PasswordHash);
+                @Html.HiddenFor(model => model.User.PhoneNumber);
+                @Html.HiddenFor(model => model.User.PhoneNumberConfirmed);
+                @Html.HiddenFor(model => model.User.Roles);
+                @Html.HiddenFor(model => model.User.SecurityStamp);
+                @Html.HiddenFor(model => model.User.TwoFactorEnabled);
+                @Html.HiddenFor(model => model.User.UserName);
 
-            // Pass UserProfile info to NewPost action
-            @Html.HiddenFor(model => model.UserProfile.BannerPicUrl);
-            @Html.HiddenFor(model => model.UserProfile.Bio);
-            @Html.HiddenFor(model => model.UserProfile.Id);
-            @Html.HiddenFor(model => model.UserProfile.ProfilePicUrl);
-            @Html.HiddenFor(model => model.UserProfile.Status);
-            @Html.HiddenFor(model => model.UserProfile.UserId);
+                // Pass UserProfile info to NewPost action
+                @Html.HiddenFor(model => model.UserProfile.BannerPicUrl);
+                @Html.HiddenFor(model => model.UserProfile.Bio);
+                @Html.HiddenFor(model => model.UserProfile.Id);
+                @Html.HiddenFor(model => model.UserProfile.ProfilePicUrl);
+                @Html.HiddenFor(model => model.UserProfile.Status);
+                @Html.HiddenFor(model => model.UserProfile.UserId);
 
-            // Pass NewPost info to NewPost Action
-            @Html.HiddenFor(model => model.NewPost.UserId);
-            <h5>Title</h5>
-            @Html.TextBoxFor(model => model.NewPost.Title);
-            <br />
-            <h5>Body</h5>
-            @Html.TextAreaFor(model => model.NewPost.Body);
-            <br />
-            <button type="submit">Submit</button>
-        }
+                // Pass NewPost info to NewPost Action
+                @Html.HiddenFor(model => model.NewPost.UserId);
+                <h4><b>Title</b></h4>
+                @Html.TextBoxFor(model => model.NewPost.Title);
+                <br />
+                <p>Body</p>
+                @Html.TextAreaFor(model => model.NewPost.Body);
+                <br />
+                <button type="submit">Submit</button>
+                <br />
+            }
+        </div>
     </details>
     <br />
 
@@ -62,6 +66,5 @@
             <p>@post.Body</p>
             <p><small><i>@post.TimeStamp</i></small></p>
         </div>
-
     }
 </div>
