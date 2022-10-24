@@ -1,4 +1,5 @@
-﻿@model Discourse.Models.ProfileViewModel
+﻿@using Microsoft.AspNet.Identity
+@model Discourse.Models.ProfileViewModel
 @{
     ViewBag.Title = "Posts";
     var user = Model.User;
@@ -65,6 +66,12 @@
             <h4><b>@post.Title</b></h4>
             <p>@post.Body</p>
             <p><small><i>@post.TimeStamp</i></small></p>
+            @{ 
+                if (User.Identity.GetUserId() == Model.User.Id)
+                {
+                    @Html.ActionLink("Delete Post", "DeletePost", new { postId = post.Id });
+                }
+            }
         </div>
     }
 </div>

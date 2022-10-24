@@ -87,5 +87,16 @@ namespace Discourse.Controllers
 
             return View("Posts", pvm);
         }
+
+        // Delete Post
+
+        public ActionResult DeletePost(int postId)
+        {
+            var post = _context.Posts.Find(postId);
+            _context.Posts.Remove(post);
+            _context.SaveChanges();
+
+            return RedirectToAction("Posts");
+        }
     }
 }
