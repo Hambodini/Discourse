@@ -73,18 +73,21 @@
         }
     }
     <h6>Comments</h6>
-    @foreach (var comment in Model.Comments)
+    @if (Model.Comments != null)
     {
-        if (comment.PostId == post.Id)
+        foreach (var comment in Model.Comments)
         {
-            <h7>@comment.FirstName @comment.LastName</h7>
-            <p><small><i>@comment.TimeStamp</i></small></p>
-            <p>@comment.Body</p>
+            if (comment.PostId == post.Id)
+            {
+                <h7>@comment.FirstName @comment.LastName</h7>
+                <p><small><i>@comment.TimeStamp</i></small></p>
+                <p>@comment.Body</p>
+            }
         }
     }
 
     @{
-    var userId = User.Identity.GetUserId();
+        var userId = User.Identity.GetUserId();
     }
 
     @using (Html.BeginForm("NewComment", "Profile"))
