@@ -201,6 +201,10 @@
     <Compile Include="Migrations\202210191812400_SeedRolesTable.Designer.cs">
       <DependentUpon>202210191812400_SeedRolesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210242009479_AddedNamesToCommentDb.cs" />
+    <Compile Include="Migrations\202210242009479_AddedNamesToCommentDb.Designer.cs">
+      <DependentUpon>202210242009479_AddedNamesToCommentDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -323,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210191812400_SeedRolesTable.resx">
       <DependentUpon>202210191812400_SeedRolesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210242009479_AddedNamesToCommentDb.resx">
+      <DependentUpon>202210242009479_AddedNamesToCommentDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -62,16 +62,39 @@
 
     @foreach (var post in Model.UserPosts)
     {
-        <div class="Post">
-            <h4><b>@post.Title</b></h4>
-            <p>@post.Body</p>
-            <p><small><i>@post.TimeStamp</i></small></p>
-            @{ 
-                if (User.Identity.GetUserId() == Model.User.Id)
-                {
-                    @Html.ActionLink("Delete Post", "DeletePost", new { postId = post.Id });
-                }
-            }
-        </div>
+<div class="Post">
+    <h4><b>@post.Title</b></h4>
+    <p>@post.Body</p>
+    <p><small><i>@post.TimeStamp</i></small></p>
+    @{
+        if (User.Identity.GetUserId() == Model.User.Id)
+        {
+            @Html.ActionLink("Delete Post", "DeletePost", new { postId = post.Id });
+        }
+    }
+    <h6>Comments</h6>
+    @foreach (var comment in Model.Comments)
+    {
+        if (comment.PostId == post.Id)
+        {
+            <h7>@comment.FirstName @comment.LastName</h7>
+            <p><small><i>@comment.TimeStamp</i></small></p>
+            <p>@comment.Body</p>
+        }
+    }
+
+    @{
+    var userId = User.Identity.GetUserId();
+    }
+
+    @using (Html.BeginForm("NewComment", "Profile"))
+    {
+        @Html.TextAreaFor(model => model.NewComment.Body);
+
+        <input type="hidden" name="userId" value="@userId" />
+        <input type="hidden" name="postId" value="@post.Id" />
+        <input type="submit" value="Submit" />
+    }
+</div>
     }
 </div>

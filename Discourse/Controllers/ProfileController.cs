@@ -44,11 +44,15 @@ namespace Discourse.Controllers
             //Get posts of logged in user
             var userPosts = _context.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.TimeStamp).ToList();
 
+            //Get list of comments in db
+            var comments = _context.Comments.OrderByDescending(c => c.TimeStamp).ToList();
+
             var pvm = new ProfileViewModel();
             pvm.User = _context.Users.Find(id);
             pvm.UserProfile = _context.Profiles.Where(p => p.UserId == id).ToArray()[0];
             pvm.UserPosts = userPosts;
             pvm.NewPost = post;
+            pvm.Comments = comments;
             return View(pvm);
         }
 
@@ -94,6 +98,24 @@ namespace Discourse.Controllers
         {
             var post = _context.Posts.Find(postId);
             _context.Posts.Remove(post);
+            _context.SaveChanges();
+
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult NewComment(ProfileViewModel pvm, string userId, int postId)
+        {
+            var user = _context.Users.Find(userId);
+
+            var comment = new Comment();
+            comment.PostId = postId;
+            comment.UserId = userId;
+            comment.FirstName = user.FirstName;
+            comment.LastName = user.LastName;
+            comment.Body = pvm.NewComment.Body;
+            comment.TimeStamp = DateTime.Now;
+
+            _context.Comments.Add(comment);
             _context.SaveChanges();
 
             return RedirectToAction("Posts");
