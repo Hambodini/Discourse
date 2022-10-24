@@ -89,7 +89,6 @@ namespace Discourse.Controllers
         }
 
         // Delete Post
-
         public ActionResult DeletePost(int postId)
         {
             var post = _context.Posts.Find(postId);
@@ -97,6 +96,14 @@ namespace Discourse.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Posts");
+        }
+
+        public ActionResult ChangeProfile(ProfileViewModel model)
+        {
+            var profile = _context.Profiles.First(p => p.Id == model.UserProfile.Id);
+            var pvm = model;
+
+            return View("Settings", pvm);
         }
     }
 }
