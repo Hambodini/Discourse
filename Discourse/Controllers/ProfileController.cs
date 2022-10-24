@@ -85,7 +85,7 @@ namespace Discourse.Controllers
             var userPosts = _context.Posts.Where(p => p.UserId == model.User.Id).OrderByDescending(p => p.TimeStamp).ToList();
             pvm.UserPosts = userPosts;
 
-            return View("Profile", pvm);
+            return View("Posts", pvm);
         }
     }
 }
