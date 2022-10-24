@@ -93,7 +93,6 @@ namespace Discourse.Controllers
         }
 
         // Delete Post
-
         public ActionResult DeletePost(int postId)
         {
             var post = _context.Posts.Find(postId);
@@ -103,22 +102,12 @@ namespace Discourse.Controllers
             return RedirectToAction("Posts");
         }
 
-        public ActionResult NewComment(ProfileViewModel pvm, string userId, int postId)
+        public ActionResult ChangeProfile(ProfileViewModel model)
         {
-            var user = _context.Users.Find(userId);
+            var profile = _context.Profiles.First(p => p.Id == model.UserProfile.Id);
+            var pvm = model;
 
-            var comment = new Comment();
-            comment.PostId = postId;
-            comment.UserId = userId;
-            comment.FirstName = user.FirstName;
-            comment.LastName = user.LastName;
-            comment.Body = pvm.NewComment.Body;
-            comment.TimeStamp = DateTime.Now;
-
-            _context.Comments.Add(comment);
-            _context.SaveChanges();
-
-            return RedirectToAction("Posts");
+            return View("Settings", pvm);
         }
     }
 }

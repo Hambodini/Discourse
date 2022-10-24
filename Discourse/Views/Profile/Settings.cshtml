@@ -1,9 +1,8 @@
-﻿
+﻿@model Discourse.Models.ProfileViewModel
+
 @{
     ViewBag.Title = "Profile Settings";
-    var user = Model.User;
     var profile = Model.UserProfile;
-    var name = user.FirstName + " " + user.LastName;
 }
 
 @Html.Partial("_Banner")
@@ -11,30 +10,24 @@
     <h3><b>Profile Settings</b></h3>
     <p><a href="/Manage/Index">Account Settings</a></p>
     <br />
-    <!--Begin HTML Form-->
-    <!--Hidden content-->
-    <div class="Setting">
-        <h4><b>Banner</b></h4>
-        <p>Current Banner:</p>
-        <img id="BannerSmall" src=@profile.BannerPicUrl>
-        <p>New Banner:</p>
-        <!-- Upload image & reset to default button -->
-    </div>
-    <div class="Setting">
-        <h4><b>Icon</b></h4>
-        <p>Current Icon:</p>
-        <img id="IconSmall" src=@profile.ProfilePicUrl>
-        <p>New Icon:</p>
-        <!-- Upload image & reset to default button -->
-    </div>
-    <div class="Setting">
-        <h4><b>Bio</b></h4>
-        <p>Current Bio:</p>
-        <p>@profile.Bio</p>
-        <p>New Bio:</p>
-        <!-- Textarea -->
-    </div>
-    <button type="submit">Submit</button>
-    <button onClick="window.location.reload();">Cancel</button>
-    <!-- End of form -->
+    @using (Html.BeginForm("ChangeProfile", "Profile"))
+    {
+        @Html.HiddenFor(model => model.UserProfile.Id);
+        <div class="Setting">
+            <h4><b>Banner</b></h4>
+            <img id="BannerSmall" src=@profile.BannerPicUrl>
+            <input type="file" name="bannerImg" />
+        </div>
+        <div class="Setting">
+            <h4><b>Icon</b></h4>
+            <img id="IconSmall" src=@profile.ProfilePicUrl>
+            <input type="file" name="iconImg" />
+        </div>
+        <div class="Setting">
+            <h4><b>Bio</b></h4>
+            @Html.TextAreaFor(model => model.UserProfile.Bio)
+        </div>
+        <button type="submit">Submit</button>
+        @Html.ActionLink("Cancel", "Settings", "Profile")
+    }
 </div>
