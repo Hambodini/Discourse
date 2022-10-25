@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Discourse.Models
 {
@@ -10,5 +11,11 @@ namespace Discourse.Models
         public Comment NewComment { get; set; }
         public List<Post> UserPosts { get; set; }
         public List<Comment> Comments { get; set; }
+
+        [DataType(DataType.Upload)]
+        public string BannerFile { get; set; }
+
+        [DataType(DataType.Upload)]
+        public string IconFile { get; set; }
     }
 }

@@ -115,27 +115,27 @@ namespace Discourse.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangeProfile(ProfileViewModel model, HttpPostedFileBase bannerImg, HttpPostedFileBase iconImg)
+        public ActionResult ChangeProfile(ProfileViewModel model, HttpPostedFileBase BannerFile, HttpPostedFileBase IconFile)
         {
             var profile = _context.Profiles.First(p => p.Id == model.UserProfile.Id);
             _context.Profiles.Remove(profile);
             _context.SaveChanges();
 
-            if (bannerImg != null)
+            if (BannerFile != null)
             {
                 var dir = Server.MapPath(Url.Content("/wwwroot/BannerPic"));
                 var path = Path.Combine(dir, profile.UserId);
 
-                bannerImg.SaveAs(path);
+                BannerFile.SaveAs(path);
                 profile.BannerPicUrl = path;
             }
 
-            if (iconImg != null)
+            if (IconFile != null)
             {
                 var dir = Server.MapPath(Url.Content("/wwwroot/ProfilePic"));
                 var path = Path.Combine(dir, profile.UserId);
 
-                iconImg.SaveAs(path);
+                IconFile.SaveAs(path);
                 profile.ProfilePicUrl = path;
             }
 
