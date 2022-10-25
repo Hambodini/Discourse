@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Discourse.Models.ProfileViewModel
+
+@{
     var user = Model.User;
     var profile = Model.UserProfile;
     var name = user.FirstName + " " + user.LastName;

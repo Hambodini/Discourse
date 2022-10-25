@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Discourse.Models;
 using Microsoft.AspNet.Identity;
@@ -18,18 +20,10 @@ namespace Discourse.Controllers
         [Authorize]
         public ActionResult _Banner()
         {
-            var post = new Post();
             var id = User.Identity.GetUserId();
-            post.UserId = id;
-
-            //Get posts of logged in user
-            var userPosts = _context.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.TimeStamp).ToList();
-
             var pvm = new ProfileViewModel();
-            pvm.User = _context.Users.Find(id);
+
             pvm.UserProfile = _context.Profiles.Where(p => p.UserId == id).ToArray()[0];
-            pvm.UserPosts = userPosts;
-            pvm.NewPost = post;
             return View(pvm);
         }
 
@@ -120,12 +114,33 @@ namespace Discourse.Controllers
             return RedirectToAction("Posts");
         }
 
-            public ActionResult ChangeProfile(ProfileViewModel model)
+        public ActionResult ChangeProfile(ProfileViewModel model, HttpPostedFileBase bannerImg, HttpPostedFileBase iconImg)
         {
             var profile = _context.Profiles.First(p => p.Id == model.UserProfile.Id);
-            var pvm = model;
 
-            return View("Settings", pvm);
+            if (bannerImg != null)
+            {
+                var dir = Server.MapPath(Url.Content("/wwwroot/BannerPic"));
+                var path = Path.Combine(dir, profile.UserId);
+
+                bannerImg.SaveAs(path);
+                profile.BannerPicUrl = path;
+            }
+
+            if (iconImg != null)
+            {
+                var dir = Server.MapPath(Url.Content("/wwwroot/ProfilePic"));
+                var path = Path.Combine(dir, profile.UserId);
+
+                iconImg.SaveAs(path);
+                profile.ProfilePicUrl = path;
+            }
+
+            _context.Profiles.Remove(_context.Profiles.First(p => p.Id == profile.Id));
+            _context.Profiles.Add(profile);
+            _context.SaveChanges();
+
+            return RedirectToAction("SEttings");
         }
     }
 }
