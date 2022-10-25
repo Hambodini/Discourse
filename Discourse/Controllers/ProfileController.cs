@@ -114,13 +114,16 @@ namespace Discourse.Controllers
             return RedirectToAction("Posts");
         }
 
+        [HttpPost]
         public ActionResult ChangeProfile(ProfileViewModel model, HttpPostedFileBase bannerImg, HttpPostedFileBase iconImg)
         {
             var profile = _context.Profiles.First(p => p.Id == model.UserProfile.Id);
+            _context.Profiles.Remove(profile);
+            _context.SaveChanges();
 
             if (bannerImg != null)
             {
-                var dir = Server.MapPath(Url.Content("/wwwroot/BannerPic"));
+                var dir = Server.MapPath(Url.Content("~/wwwroot/BannerPic"));
                 var path = Path.Combine(dir, profile.UserId);
 
                 bannerImg.SaveAs(path);
@@ -129,14 +132,15 @@ namespace Discourse.Controllers
 
             if (iconImg != null)
             {
-                var dir = Server.MapPath(Url.Content("/wwwroot/ProfilePic"));
+                var dir = Server.MapPath(Url.Content("~/wwwroot/ProfilePic"));
                 var path = Path.Combine(dir, profile.UserId);
 
                 iconImg.SaveAs(path);
                 profile.ProfilePicUrl = path;
             }
 
-            _context.Profiles.Remove(_context.Profiles.First(p => p.Id == profile.Id));
+            profile.Bio = model.UserProfile.Bio;
+
             _context.Profiles.Add(profile);
             _context.SaveChanges();
 
