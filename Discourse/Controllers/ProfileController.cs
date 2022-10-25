@@ -123,7 +123,7 @@ namespace Discourse.Controllers
 
             if (bannerImg != null)
             {
-                var dir = Server.MapPath(Url.Content("~/wwwroot/BannerPic"));
+                var dir = Server.MapPath(Url.Content("/wwwroot/BannerPic"));
                 var path = Path.Combine(dir, profile.UserId);
 
                 bannerImg.SaveAs(path);
@@ -132,7 +132,7 @@ namespace Discourse.Controllers
 
             if (iconImg != null)
             {
-                var dir = Server.MapPath(Url.Content("~/wwwroot/ProfilePic"));
+                var dir = Server.MapPath(Url.Content("/wwwroot/ProfilePic"));
                 var path = Path.Combine(dir, profile.UserId);
 
                 iconImg.SaveAs(path);
