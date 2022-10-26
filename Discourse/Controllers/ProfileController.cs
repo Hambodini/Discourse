@@ -130,7 +130,6 @@ namespace Discourse.Controllers
 
                 if (ext == "png" || ext == "jpg" || ext == "jpg")
                 {
-
                     var dirString = "/wwwroot/BannerPic";
                     var dir = Server.MapPath(Url.Content(dirString));
                     var path = Path.Combine(dir, userId + '.' + ext);
@@ -161,7 +160,39 @@ namespace Discourse.Controllers
             _context.Profiles.Add(profile);
             _context.SaveChanges();
 
-            return RedirectToAction("SEttings");
+            return RedirectToAction("Settings");
         }
-    }
+
+        public ActionResult ResetBanner()
+        {
+            var id = User.Identity.GetUserId();
+            var profile = _context.Profiles.First(p => p.UserId == id);
+
+            _context.Profiles.Remove(profile);
+            _context.SaveChanges();
+
+            profile.BannerPicUrl = "/wwwroot/BannerPic/NoBanner.jpg";
+
+            _context.Profiles.Add(profile);
+            _context.SaveChanges();
+
+            return RedirectToAction("Settings");
+        }
+
+        public ActionResult ResetIcon()
+        {
+            var id = User.Identity.GetUserId();
+            var profile = _context.Profiles.First(p => p.UserId == id);
+
+            _context.Profiles.Remove(profile);
+            _context.SaveChanges();
+
+            profile.ProfilePicUrl = "/wwwroot/ProfilePic/NoPic.jpg";
+
+            _context.Profiles.Add(profile);
+            _context.SaveChanges();
+
+            return RedirectToAction("Settings");
+        }
+    } 
 }

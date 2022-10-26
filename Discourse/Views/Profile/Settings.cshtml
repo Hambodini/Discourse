@@ -16,18 +16,20 @@
         <div class="Setting">
             <h4><b>Banner</b></h4>
             <img id="BannerSmall" src=@profile.BannerPicUrl>
-            @Html.EditorFor(model => model.BannerFile, new { htmlAttributes = new { @class = "form-control", @type="file"} })
+            @Html.EditorFor(model => model.BannerFile, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+            @Html.ActionLink("Reset to Default", "ResetBanner", "Profile")
         </div>
         <div class="Setting">
             <h4><b>Icon</b></h4>
             <img id="IconSmall" src=@profile.ProfilePicUrl>
             @Html.EditorFor(model => model.IconFile, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+            @Html.ActionLink("Reset to Default", "ResetIcon", "Profile")
         </div>
         <div class="Setting">
             <h4><b>Bio</b></h4>
             @Html.TextAreaFor(model => model.UserProfile.Bio)
         </div>
         <button type="submit">Submit</button>
-        @Html.ActionLink("Cancel", "Settings", "Profile")
+        <input type="reset" value="Cancel" />
     }
 </div>
