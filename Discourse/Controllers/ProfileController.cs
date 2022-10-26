@@ -118,25 +118,49 @@ namespace Discourse.Controllers
         public ActionResult ChangeProfile(ProfileViewModel model, HttpPostedFileBase BannerFile, HttpPostedFileBase IconFile)
         {
             var profile = _context.Profiles.First(p => p.Id == model.UserProfile.Id);
-            _context.Profiles.Remove(profile);
-            _context.SaveChanges();
+            var userId = profile.UserId;
+            var isDeleted = false;
 
             if (BannerFile != null)
             {
-                var dir = Server.MapPath(Url.Content("/wwwroot/BannerPic"));
-                var path = Path.Combine(dir, profile.UserId);
+                var file = BannerFile.FileName;
+                var ext = file.Substring(file.LastIndexOf('.') + 1).ToLower();
 
-                BannerFile.SaveAs(path);
-                profile.BannerPicUrl = path;
+                if (ext == "png" || ext == "jpg" || ext == "jpg")
+                {
+                    _context.Profiles.Remove(profile);
+                    _context.SaveChanges();
+                    isDeleted = true;
+
+                    var dirString = "/wwwroot/BannerPic";
+                    var dir = Server.MapPath(Url.Content(dirString));
+                    var path = Path.Combine(dir, userId + '.' + ext);
+
+                    BannerFile.SaveAs(path);
+                    profile.BannerPicUrl = dirString + '/' + userId + '.' + ext;
+                }
             }
 
             if (IconFile != null)
             {
-                var dir = Server.MapPath(Url.Content("/wwwroot/ProfilePic"));
-                var path = Path.Combine(dir, profile.UserId);
+                var file = IconFile.FileName;
+                var ext = file.Substring(file.LastIndexOf('.') + 1).ToLower();
 
-                IconFile.SaveAs(path);
-                profile.ProfilePicUrl = path;
+                if (ext == "png" || ext == "jpg" || ext == "jpg")
+                {
+                    if(!isDeleted)
+                    {
+                        _context.Profiles.Remove(profile);
+                        _context.SaveChanges();
+                    }
+
+                    var dirString = "/wwwroot/ProfilePic";
+                    var dir = Server.MapPath(Url.Content(dirString));
+                    var path = Path.Combine(dir, userId + '.' + ext);
+
+                    IconFile.SaveAs(path);
+                    profile.ProfilePicUrl = dirString + '/' + userId + '.' + ext;
+                }
             }
 
             profile.Bio = model.UserProfile.Bio;

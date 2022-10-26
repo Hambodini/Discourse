@@ -10,7 +10,7 @@
     <h3><b>Profile Settings</b></h3>
     <p><a href="/Manage/Index">Account Settings</a></p>
     <br />
-    @using (Html.BeginForm("ChangeProfile", "Profile"))
+    @using (Html.BeginForm("ChangeProfile", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.HiddenFor(model => model.UserProfile.Id);
         <div class="Setting">
