@@ -119,7 +119,9 @@ namespace Discourse.Controllers
         {
             var profile = _context.Profiles.First(p => p.Id == model.UserProfile.Id);
             var userId = profile.UserId;
-            var isDeleted = false;
+
+            _context.Profiles.Remove(profile);
+            _context.SaveChanges();
 
             if (BannerFile != null)
             {
@@ -128,9 +130,6 @@ namespace Discourse.Controllers
 
                 if (ext == "png" || ext == "jpg" || ext == "jpg")
                 {
-                    _context.Profiles.Remove(profile);
-                    _context.SaveChanges();
-                    isDeleted = true;
 
                     var dirString = "/wwwroot/BannerPic";
                     var dir = Server.MapPath(Url.Content(dirString));
@@ -148,12 +147,6 @@ namespace Discourse.Controllers
 
                 if (ext == "png" || ext == "jpg" || ext == "jpg")
                 {
-                    if(!isDeleted)
-                    {
-                        _context.Profiles.Remove(profile);
-                        _context.SaveChanges();
-                    }
-
                     var dirString = "/wwwroot/ProfilePic";
                     var dir = Server.MapPath(Url.Content(dirString));
                     var path = Path.Combine(dir, userId + '.' + ext);
