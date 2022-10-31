@@ -209,9 +209,14 @@
     <Compile Include="Migrations\202210311812149_createdLikedPostsTable.Designer.cs">
       <DependentUpon>202210311812149_createdLikedPostsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210311824173_createdFriendsTable.cs" />
+    <Compile Include="Migrations\202210311824173_createdFriendsTable.Designer.cs">
+      <DependentUpon>202210311824173_createdFriendsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LikedPost.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -338,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210311812149_createdLikedPostsTable.resx">
       <DependentUpon>202210311812149_createdLikedPostsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210311824173_createdFriendsTable.resx">
+      <DependentUpon>202210311824173_createdFriendsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
