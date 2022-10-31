@@ -108,9 +108,12 @@ namespace Discourse.Controllers
             comment.Body = pvm.NewComment.Body;
             comment.TimeStamp = DateTime.Now;
 
-            _context.Comments.Add(comment);
-            _context.SaveChanges();
-
+            if (comment.Body != null)
+            {
+                _context.Comments.Add(comment);
+                _context.SaveChanges();
+            }
+            
             return RedirectToAction("Posts");
         }
 

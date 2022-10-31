@@ -141,6 +141,20 @@ textarea {
     color: #9d9d9d;
 }
 
+.Post input {
+    margin-top: .5em;
+    background: #222222;
+}
+
+.Post input:hover {
+    color: white;
+}
+
+.Post textarea {
+    width: 100%;
+    background: #222222;
+}
+
 .Settings p {
     margin-left: .5em;
 }
