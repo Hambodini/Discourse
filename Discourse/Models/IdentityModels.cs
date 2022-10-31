@@ -36,6 +36,7 @@ namespace Discourse.Models
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<LikedPost> LikedPosts { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

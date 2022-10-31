@@ -205,10 +205,15 @@
     <Compile Include="Migrations\202210242009479_AddedNamesToCommentDb.Designer.cs">
       <DependentUpon>202210242009479_AddedNamesToCommentDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210311812149_createdLikedPostsTable.cs" />
+    <Compile Include="Migrations\202210311812149_createdLikedPostsTable.Designer.cs">
+      <DependentUpon>202210311812149_createdLikedPostsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LikedPost.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -330,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210242009479_AddedNamesToCommentDb.resx">
       <DependentUpon>202210242009479_AddedNamesToCommentDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210311812149_createdLikedPostsTable.resx">
+      <DependentUpon>202210311812149_createdLikedPostsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
