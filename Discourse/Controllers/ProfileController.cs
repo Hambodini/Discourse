@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -206,6 +207,31 @@ namespace Discourse.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Settings");
+        }
+
+        public ActionResult ProfileFeed()
+        {
+            var id = User.Identity.GetUserId();
+            var postList = _context.Posts.OrderByDescending(p => p.TimeStamp).ToList();
+            var feedList = new List<Post>();
+            var friendList = _context.Friends.Where(f => f.UserId == id).ToList();
+
+            foreach (var post in postList)
+            {
+                foreach (var friend in friendList)
+                {
+                    if (post.UserId == friend.FriendUsersId)
+                    {
+                        feedList.Add(post);
+                    }
+                }
+                
+            }
+
+            var pvm = new ProfileViewModel();
+            pvm.UserPosts = feedList;
+
+            return View(feedList);
         }
     } 
 }
