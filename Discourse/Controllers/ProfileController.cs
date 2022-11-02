@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -76,6 +77,7 @@ namespace Discourse.Controllers
         [Authorize]
         public ActionResult Friends()
         {
+            var friends = new List<ApplicationUser>();
             var id = User.Identity.GetUserId();
             var pvm = new ProfileViewModel();
             pvm.User = _context.Users.Find(id);
@@ -85,7 +87,8 @@ namespace Discourse.Controllers
             foreach (var friend in friendsList)
             {
                 var user = _context.Users.First(f => f.Id == friend.FriendUsersId);
-                pvm.Friends.Add(user);
+                friends.Add(user);
+                pvm.Friends = friends;
             }
             return View(pvm);
         }
