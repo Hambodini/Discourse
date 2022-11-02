@@ -234,12 +234,16 @@ namespace Discourse.Controllers
             var postList = _context.Posts.OrderByDescending(p => p.TimeStamp).ToList();
             var feedList = new List<Post>();
             var friendList = _context.Friends.Where(f => f.UserId == id).ToList();
+            var comments = _context.Comments.OrderByDescending(c => c.TimeStamp).ToList();
+            var friendId = "";
 
             foreach (var post in postList)
             {
-                foreach (var friend in friendList)
+                for (int i = 0; i < friendList.Count; i++)
                 {
-                    if (post.UserId == friend.FriendUsersId)
+                    friendId = friendList[i].FriendUsersId;
+                    
+                    if (post.UserId == friendId)
                     {
                         feedList.Add(post);
                     }
@@ -249,8 +253,10 @@ namespace Discourse.Controllers
 
             var pvm = new ProfileViewModel();
             pvm.UserPosts = feedList;
+            pvm.Comments = comments;
+            pvm.User = _context.Users.Find(id);
 
-            return View(feedList);
+            return View(pvm);
         }
     } 
 }
