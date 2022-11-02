@@ -73,6 +73,23 @@ namespace Discourse.Controllers
             return View(pvm);
         }
 
+        [Authorize]
+        public ActionResult Friends()
+        {
+            var id = User.Identity.GetUserId();
+            var pvm = new ProfileViewModel();
+            pvm.User = _context.Users.Find(id);
+            pvm.UserProfile = _context.Profiles.Where(p => p.UserId == id).ToArray()[0];
+
+            var friendsList = _context.Friends.Where(f => f.UserId == id).ToArray();
+            foreach (var friend in friendsList)
+            {
+                var user = _context.Users.First(f => f.Id == friend.FriendUsersId);
+                pvm.Friends.Add(user);
+            }
+            return View(pvm);
+        }
+
         public ActionResult NewPost(ProfileViewModel model)
         {
             var timeStamp = DateTime.Now;

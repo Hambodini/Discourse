@@ -12,6 +12,8 @@ namespace Discourse.Models
         public List<Post> UserPosts { get; set; }
         public List<Comment> Comments { get; set; }
 
+        public List<ApplicationUser> Friends { get; set; }
+
         [DataType(DataType.Upload)]
         public string BannerFile { get; set; }
 

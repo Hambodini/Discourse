@@ -1,0 +1,29 @@
+﻿@model Discourse.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "Friends List";
+    var profile = Model.UserProfile;
+}
+
+@Html.Partial("_Banner")
+
+<div class="Friends">
+    <p><a href="/Friend/Index">Add Friends</a></p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var friend in Model.Friends)
+            {
+                <tr>
+                    <td>@friend.FirstName</td>
+                    <td>@friend.LastName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
