@@ -5,6 +5,12 @@
 
 <h2>Find People to Friend</h2>
 
+@using (Html.BeginForm("SearchPeople", "Friend"))
+{
+    <input type="text" name="searchText" placeholder="Enter first name last name" />
+    <input type="submit" value="Find" />
+}
+
 <table class="table table-bordered table-hover">
     <thead>
         <tr>

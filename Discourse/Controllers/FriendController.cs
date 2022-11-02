@@ -19,9 +19,20 @@ namespace Discourse.Controllers
         // GET: Friend
         public ActionResult Index()
         {
-            var userList = _context.Profiles.ToList();
+            var userList = _context.Users.ToList();
 
             return View(userList);
+        }
+
+        public ActionResult SearchPeople(string searchText)
+        {
+            string[] name = searchText.Split(' ');
+            string firstName = name[0];
+            string lastName = name[1];
+
+            var searchList = _context.Users.Where(p => p.FirstName == firstName).Where(p => p.LastName == lastName).OrderBy(p => p.LastName).ToList();
+
+            return View("Index", searchList);
         }
 
         public ActionResult AddFriend(string friendId)
