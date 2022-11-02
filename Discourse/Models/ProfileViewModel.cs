@@ -11,7 +11,7 @@ namespace Discourse.Models
         public Comment NewComment { get; set; }
         public List<Post> UserPosts { get; set; }
         public List<Comment> Comments { get; set; }
-
+        public List<Post> LikedPosts { get; set; }
         public List<ApplicationUser> Friends { get; set; }
 
         [DataType(DataType.Upload)]
