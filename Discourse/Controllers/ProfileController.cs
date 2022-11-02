@@ -88,8 +88,8 @@ namespace Discourse.Controllers
             {
                 var user = _context.Users.First(f => f.Id == friend.FriendUsersId);
                 friends.Add(user);
-                pvm.Friends = friends;
             }
+            pvm.Friends = friends;
             return View(pvm);
         }
 
