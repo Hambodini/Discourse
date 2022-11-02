@@ -63,6 +63,16 @@ namespace Discourse.Controllers
             return View(pvm);
         }
 
+        [Authorize]
+        public ActionResult Likes()
+        {
+            var id = User.Identity.GetUserId();
+            var pvm = new ProfileViewModel();
+            pvm.User = _context.Users.Find(id);
+            pvm.UserProfile = _context.Profiles.Where(p => p.UserId == id).ToArray()[0];
+            return View(pvm);
+        }
+
         public ActionResult NewPost(ProfileViewModel model)
         {
             var timeStamp = DateTime.Now;
@@ -108,9 +118,12 @@ namespace Discourse.Controllers
             comment.Body = pvm.NewComment.Body;
             comment.TimeStamp = DateTime.Now;
 
-            _context.Comments.Add(comment);
-            _context.SaveChanges();
-
+            if (comment.Body != null)
+            {
+                _context.Comments.Add(comment);
+                _context.SaveChanges();
+            }
+            
             return RedirectToAction("Posts");
         }
 
