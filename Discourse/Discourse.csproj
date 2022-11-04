@@ -222,6 +222,14 @@
     <Compile Include="Migrations\202211040612189_AddAdminToRole.Designer.cs">
       <DependentUpon>202211040612189_AddAdminToRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211040647089_HardcodedPosts.cs" />
+    <Compile Include="Migrations\202211040647089_HardcodedPosts.Designer.cs">
+      <DependentUpon>202211040647089_HardcodedPosts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211040657028_HardcodedPostsComments.cs" />
+    <Compile Include="Migrations\202211040657028_HardcodedPostsComments.Designer.cs">
+      <DependentUpon>202211040657028_HardcodedPostsComments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -365,6 +373,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211040612189_AddAdminToRole.resx">
       <DependentUpon>202211040612189_AddAdminToRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211040647089_HardcodedPosts.resx">
+      <DependentUpon>202211040647089_HardcodedPosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211040657028_HardcodedPostsComments.resx">
+      <DependentUpon>202211040657028_HardcodedPostsComments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
