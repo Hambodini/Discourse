@@ -214,6 +214,14 @@
     <Compile Include="Migrations\202210311824173_createdFriendsTable.Designer.cs">
       <DependentUpon>202210311824173_createdFriendsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211040610348_HardcodedUsers.cs" />
+    <Compile Include="Migrations\202211040610348_HardcodedUsers.Designer.cs">
+      <DependentUpon>202211040610348_HardcodedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211040612189_AddAdminToRole.cs" />
+    <Compile Include="Migrations\202211040612189_AddAdminToRole.Designer.cs">
+      <DependentUpon>202211040612189_AddAdminToRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -351,6 +359,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210311824173_createdFriendsTable.resx">
       <DependentUpon>202210311824173_createdFriendsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211040610348_HardcodedUsers.resx">
+      <DependentUpon>202211040610348_HardcodedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211040612189_AddAdminToRole.resx">
+      <DependentUpon>202211040612189_AddAdminToRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
