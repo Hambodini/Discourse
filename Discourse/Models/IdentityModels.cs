@@ -38,6 +38,7 @@ namespace Discourse.Models
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<LikedPost> LikedPosts { get; set; }
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
