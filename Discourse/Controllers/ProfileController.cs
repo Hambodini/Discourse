@@ -67,10 +67,19 @@ namespace Discourse.Controllers
         [Authorize]
         public ActionResult Likes()
         {
+            var likedPosts = new List<Post>();
             var id = User.Identity.GetUserId();
             var pvm = new ProfileViewModel();
             pvm.User = _context.Users.Find(id);
             pvm.UserProfile = _context.Profiles.Where(p => p.UserId == id).ToArray()[0];
+
+            var likes = _context.LikedPosts.Where(l => l.UserId == id).ToArray();
+            foreach (var like in likes)
+            {
+                var likedPost = _context.Posts.First(p => p.Id == like.Id);
+                likedPosts.Add(likedPost);
+            }
+            pvm.LikedPosts = likedPosts;
             return View(pvm);
         }
 
