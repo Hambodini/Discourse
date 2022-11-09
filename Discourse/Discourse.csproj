@@ -239,6 +239,10 @@
     <Compile Include="Migrations\202211071912587_AddedNotifications.Designer.cs">
       <DependentUpon>202211071912587_AddedNotifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211091922360_HardcodedProfiles.cs" />
+    <Compile Include="Migrations\202211091922360_HardcodedProfiles.Designer.cs">
+      <DependentUpon>202211091922360_HardcodedProfiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -400,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211071912587_AddedNotifications.resx">
       <DependentUpon>202211071912587_AddedNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211091922360_HardcodedProfiles.resx">
+      <DependentUpon>202211091922360_HardcodedProfiles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
