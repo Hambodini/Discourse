@@ -243,6 +243,22 @@
     <Compile Include="Migrations\202211091922360_HardcodedProfiles.Designer.cs">
       <DependentUpon>202211091922360_HardcodedProfiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211161933085_addedNamesToPostsTable.cs" />
+    <Compile Include="Migrations\202211161933085_addedNamesToPostsTable.Designer.cs">
+      <DependentUpon>202211161933085_addedNamesToPostsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211161940122_DropPostTable.cs" />
+    <Compile Include="Migrations\202211161940122_DropPostTable.Designer.cs">
+      <DependentUpon>202211161940122_DropPostTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211161941382_CreatedPostTable.cs" />
+    <Compile Include="Migrations\202211161941382_CreatedPostTable.Designer.cs">
+      <DependentUpon>202211161941382_CreatedPostTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211161944086_seededPosts.cs" />
+    <Compile Include="Migrations\202211161944086_seededPosts.Designer.cs">
+      <DependentUpon>202211161944086_seededPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -407,6 +423,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211091922360_HardcodedProfiles.resx">
       <DependentUpon>202211091922360_HardcodedProfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211161933085_addedNamesToPostsTable.resx">
+      <DependentUpon>202211161933085_addedNamesToPostsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211161940122_DropPostTable.resx">
+      <DependentUpon>202211161940122_DropPostTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211161941382_CreatedPostTable.resx">
+      <DependentUpon>202211161941382_CreatedPostTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211161944086_seededPosts.resx">
+      <DependentUpon>202211161944086_seededPosts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
