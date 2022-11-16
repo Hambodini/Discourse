@@ -11,7 +11,33 @@ namespace Discourse.Controllers
         
         public ActionResult Index()
         {
-            return View();
+            //Display all reports
+            NotImplementedException ex = new NotImplementedException();
+            throw ex;
         }
+
+        public ActionResult ReportedPost()
+        {
+            //Display a reported post 
+            NotImplementedException ex = new NotImplementedException();
+            throw ex;
+        }
+
+        [HttpGet]
+        public ActionResult BanUser()
+        {
+            //ban user input page
+            NotImplementedException ex = new NotImplementedException();
+            throw ex;
+        }
+
+        [HttpPost]
+        public ActionResult BanUser(string parameter)
+        {
+            //ban user success page
+            NotImplementedException ex = new NotImplementedException();
+            throw ex;
+        }
+
     }
 }
