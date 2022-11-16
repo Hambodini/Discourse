@@ -260,6 +260,10 @@
     <Compile Include="Migrations\202211161944086_seededPosts.Designer.cs">
       <DependentUpon>202211161944086_seededPosts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211162006595_createReportedPostsTable.cs" />
+    <Compile Include="Migrations\202211162006595_createReportedPostsTable.Designer.cs">
+      <DependentUpon>202211162006595_createReportedPostsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -271,6 +275,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
+    <Compile Include="Models\ReportedPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -437,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211161944086_seededPosts.resx">
       <DependentUpon>202211161944086_seededPosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211162006595_createReportedPostsTable.resx">
+      <DependentUpon>202211162006595_createReportedPostsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
