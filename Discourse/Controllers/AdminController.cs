@@ -48,9 +48,10 @@ namespace Discourse.Controllers
         [HttpPost]
         public ActionResult AddReportedPostConfirmed(ReportedPost reportedPost)
         {
-            int i = 0;
-            NotImplementedException ex = new NotImplementedException();
-            throw ex;
+            _context.ReportedPosts.Add(reportedPost);
+            _context.SaveChanges();
+
+            return RedirectToAction("ProfileFeed", "Profile");
         }
 
         public ActionResult ReportedPost()
