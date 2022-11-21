@@ -17,6 +17,7 @@
             {
                 <p><small><i>@Html.ActionLink("Delete Post", "DeletePost", new { postId = post.Id })</i></small></p>
             }
+        @Html.ActionLink("Report Post", "AddReportedPost", "Admin", new { postId = post.Id }, null)
             <hr />
         }
         <h4><b>Comments</b></h4>

@@ -1,0 +1,32 @@
+﻿@model Discourse.Models.ReportedPost
+@{
+    ViewBag.Title = "AddReportedPost";
+}
+
+@using (Html.BeginForm("AddReportedPostConfirmed", "Admin"))
+{
+    <h2>Report Post</h2>
+
+    <h3>@Model.FirstName @Model.LastName</h3>
+    <h5>@Model.Title</h5>
+    <p>@Model.Body</p>
+    <br />
+    <br />
+
+    <p>Reason for Reporting:</p>
+    @Html.TextAreaFor(m => m.Reason);
+
+    @Html.HiddenFor(m => m.ReporterUserId);
+    @Html.HiddenFor(m => m.DateReported);
+    @Html.HiddenFor(m => m.ReportedUserId);
+    @Html.HiddenFor(m => m.PostId);
+    @Html.HiddenFor(m => m.FirstName);
+    @Html.HiddenFor(m => m.LastName);
+    @Html.HiddenFor(m => m.Title);
+    @Html.HiddenFor(m => m.Body);
+    @Html.HiddenFor(m => m.TimeStamp);
+
+    <input type="submit" value="Report Post" />
+
+
+}
