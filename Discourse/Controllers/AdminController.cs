@@ -19,9 +19,14 @@ namespace Discourse.Controllers
 
         public ActionResult Index()
         {
-            //Display all reports
-            NotImplementedException ex = new NotImplementedException();
-            throw ex;
+            var reportedList = _context.ReportedPosts.OrderBy(p => p.DateReported).ToList();
+            
+            if (User.IsInRole("Admin"))
+            {
+                return View(reportedList);
+            }
+
+            return HttpNotFound();
         }
 
         [HttpGet]
@@ -54,28 +59,64 @@ namespace Discourse.Controllers
             return RedirectToAction("ProfileFeed", "Profile");
         }
 
-        public ActionResult ReportedPost()
+        public ActionResult ReportedPost(int reportId)
         {
-            //Display a reported post 
-            NotImplementedException ex = new NotImplementedException();
-            throw ex;
+            if (User.IsInRole("Admin"))
+            {
+                var reportedPost = _context.ReportedPosts.SingleOrDefault(p => p.Id == reportId);
+
+                return View(reportedPost);
+            }
+            return HttpNotFound();
         }
 
-        [HttpGet]
-        public ActionResult BanUser()
+        public ActionResult DeleteReport(int reportId)
         {
-            //ban user input page
-            NotImplementedException ex = new NotImplementedException();
-            throw ex;
+            if (User.IsInRole("Admin"))
+            {
+                var reportedPost = _context.ReportedPosts.SingleOrDefault(p => p.Id == reportId);
+                _context.ReportedPosts.Remove(reportedPost);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return HttpNotFound();
         }
 
-        [HttpPost]
-        public ActionResult BanUser(string parameter)
+        public ActionResult DeletePost(int reportId)
         {
-            //ban user success page
-            NotImplementedException ex = new NotImplementedException();
-            throw ex;
+            if (User.IsInRole("Admin"))
+            {
+                var reportedPost = _context.ReportedPosts.SingleOrDefault(p => p.Id == reportId);
+                var post = _context.Posts.SingleOrDefault(p => p.Id == reportedPost.PostId);
+                _context.Posts.Remove(post);
+                _context.ReportedPosts.Remove(reportedPost);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return HttpNotFound();
         }
 
+        public ActionResult DeleteBan(int bannedDayAmount, int reportId)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                //Ban user for specified # of days
+                var reportedPost = _context.ReportedPosts.SingleOrDefault(p => p.Id == reportId);
+                var user = _context.Users.Find(reportedPost.ReportedUserId);
+                var currentDate = DateTime.Now;
+                var endDate = currentDate.AddDays(bannedDayAmount);
+                user.LockoutEndDateUtc = endDate;
+
+                //Delete report and post
+                var reportedPostId = reportedPost.PostId;
+                var post = _context.Posts.SingleOrDefault(p => p.Id == reportedPostId);
+
+                _context.Posts.Remove(post);
+                _context.ReportedPosts.Remove(reportedPost);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return HttpNotFound();
+        }
     }
 }

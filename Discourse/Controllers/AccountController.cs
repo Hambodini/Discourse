@@ -80,7 +80,8 @@ namespace Discourse.Controllers
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    var user = _context.Users.SingleOrDefault(u => u.Email == model.Email);
+                    return View("Lockout", user);
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:

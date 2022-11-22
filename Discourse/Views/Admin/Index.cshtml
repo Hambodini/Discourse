@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Discourse.Models.ReportedPost>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Report List</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Reported Date</th>
+            <th>Reason</th>
+            <th>Reported First Name</th>
+            <th>Reported Last Name</th>
+            <th>View Post</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td>@report.DateReported</td>
+                <td>@report.Reason</td>
+                <td>@report.FirstName</td>
+                <td>@report.LastName</td>
+                <td>
+                    @using (Html.BeginForm("ReportedPost", "Admin"))
+                    {
+                        <input type="hidden" name="reportId" value="@report.Id" />
+                        <input type="submit" value="View Post" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

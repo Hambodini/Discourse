@@ -1,4 +1,4 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿@model Discourse.Models.ApplicationUser
 
 @{
     ViewBag.Title = "Locked Out";
@@ -6,5 +6,5 @@
 
 <hgroup>
     <h1 class="text-danger">Locked out.</h1>
-    <h2 class="text-danger">This account has been locked out, please try again later.</h2>
+    <h2 class="text-danger">This account has been banned due to a post that violated our terms and services, please try again on @Model.LockoutEndDateUtc.</h2>
 </hgroup>
