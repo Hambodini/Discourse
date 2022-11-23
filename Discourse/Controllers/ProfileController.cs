@@ -131,6 +131,8 @@ namespace Discourse.Controllers
             post.Title = model.NewPost.Title;
             post.Body = model.NewPost.Body;
             post.TimeStamp = timeStamp;
+            post.FirstName = model.User.FirstName;
+            post.LastName = model.User.LastName;
 
             _context.Posts.Add(post);
             _context.SaveChanges();
