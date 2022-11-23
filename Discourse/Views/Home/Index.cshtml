@@ -32,7 +32,6 @@
         }
         @Html.ActionLink("Report Post", "AddReportedPost", "Admin", new { postId = post.Id }, null)
         <hr />
-        }
         <h4><b>Comments</b></h4>
         @if (Model.Comments != null)
         {
@@ -40,10 +39,12 @@
             {
                 if (comment.PostId == post.Id)
                 {
+                    <div class="Comment">
                     <p>@comment.FirstName @comment.LastName</p>
                     <p>@comment.Body</p>
                     <p><small><i>@comment.TimeStamp</i></small></p>
                     <hr />
+                    </div>
                 }
             }
         }

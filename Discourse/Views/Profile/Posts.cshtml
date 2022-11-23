@@ -66,12 +66,11 @@
             <h4><b>@post.Title</b></h4>
             <p>@post.Body</p>
             <p><small><i>@post.TimeStamp</i></small></p>
-            @{ if (User.Identity.GetUserId() == Model.User.Id)
+            @if (User.Identity.GetUserId() == Model.User.Id)
             {
-                <p><small><i>@Html.ActionLink("Delete Post", "DeletePost", new { postId = post.Id })</i></small></p>
+                <p><small><i>@Html.ActionLink("Delete Post", "DeletePost", new {postId = post.Id })</i></small></p>
             }
             <hr />
-        }
         <h4><b>Comments</b></h4>
         @if (Model.Comments != null)
         {
@@ -79,10 +78,12 @@
             {
                 if (comment.PostId == post.Id)
                 {
+                <div class="Comment">
                     <p>@comment.FirstName @comment.LastName</p>
                     <p>@comment.Body</p>
                     <p><small><i>@comment.TimeStamp</i></small></p>
                     <hr />
+                </div>
                 }
             }
         }
