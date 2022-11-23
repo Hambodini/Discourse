@@ -51,7 +51,26 @@ namespace Discourse.Controllers
             return View(pvm);
         }
 
-        // POST: Profile
+        [Authorize]
+        public ActionResult FriendPosts(string id)
+        {
+            var post = new Post();
+            post.UserId = id;
+
+            //Get posts of logged in user
+            var userPosts = _context.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.TimeStamp).ToList();
+
+            //Get list of comments in db
+            var comments = _context.Comments.OrderByDescending(c => c.TimeStamp).ToList();
+
+            var pvm = new ProfileViewModel();
+            pvm.User = _context.Users.Find(id);
+            pvm.UserProfile = _context.Profiles.Where(p => p.UserId == id).ToArray()[0];
+            pvm.UserPosts = userPosts;
+            pvm.NewPost = post;
+            pvm.Comments = comments;
+            return View("Posts", pvm);
+        }
 
 
         [Authorize]

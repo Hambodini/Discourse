@@ -48,5 +48,20 @@ namespace Discourse.Controllers
 
             return RedirectToAction("Index"); 
         }
+
+        public ActionResult FriendsList()
+        {
+            var friends = new List<ApplicationUser>();
+            var id = User.Identity.GetUserId();
+            var friendsList = _context.Friends.Where(f => f.UserId == id).ToList();
+
+            foreach (var friend in friendsList)
+            {
+                var user = _context.Users.First(f => f.Id == friend.FriendUsersId);
+                friends.Add(user);
+            }
+
+            return View(friends);
+        }
     }
 }
