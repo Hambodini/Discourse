@@ -8,50 +8,51 @@
 
 @foreach (var post in Model.UserPosts)
 {
-    <div class="Post">
-        <h3><b>@post.FirstName @post.LastName</b></h3>
-        <h4><b>@post.Title</b></h4>
-        <p>@post.Body</p>
-        <p><small><i>@post.TimeStamp</i></small></p>
-        @if (User.Identity.GetUserId() == post.UserId)
-            {
-                <p><small><i>@Html.ActionLink("Delete Post", "DeletePost", new { postId = post.Id })</i></small></p>
-            }
-        @Html.ActionLink("Report Post", "AddReportedPost", "Admin", new { postId = post.Id }, null)
-            <hr />
-        }
-        <h4><b>Comments</b></h4>
-        @if (Model.Comments != null)
+<div class="Post">
+    <h3><b>@post.FirstName @post.LastName</b></h3>
+    <h5><b>@post.Title</b></h5>
+    <p>@post.Body</p>
+    <p><small><i>@post.TimeStamp</i></small></p>
+    @if (User.Identity.GetUserId() == post.UserId)
+    {
+        <p><small><i>@Html.ActionLink("Delete Post", "DeletePost", new { postId = post.Id })</i></small></p>
+    }
+    @Html.ActionLink("Report Post", "AddReportedPost", "Admin", new { postId = post.Id }, null)
+    <hr />
+    <h4><b>Comments</b></h4>
+    @if (Model.Comments != null)
+    {
+        foreach (var comment in Model.Comments)
         {
-            foreach (var comment in Model.Comments)
+            if (comment.PostId == post.Id)
             {
-                if (comment.PostId == post.Id)
-                {
+                <div class="Comment">
                     <p>@comment.FirstName @comment.LastName</p>
                     <p>@comment.Body</p>
                     <p><small><i>@comment.TimeStamp</i></small></p>
                     <hr />
-                }
-            }
-        }
+                    </div>
+                    }
+                    }
+                    }
 
-        @{
-            var userId = User.Identity.GetUserId();
-        }
+                    @{
+                        var userId = User.Identity.GetUserId();
+                    }
 
-        <details>
-            <summary>New Comment</summary>
-            @using (Html.BeginForm("NewComment", "Profile"))
-            {
-                <br />
-                @Html.TextAreaFor(model => model.NewComment.Body);
-                <br />
-                <input type="hidden" name="userId" value="@userId" />
-                <input type="hidden" name="postId" value="@post.Id" />
-                <input type="submit" value="Submit" />
+                    <details>
+                        <summary>New Comment</summary>
+                        @using (Html.BeginForm("NewComment", "Profile"))
+                        {
+                            <br />
+                            @Html.TextAreaFor(model => model.NewComment.Body);
+                            <br />
+                            <input type="hidden" name="userId" value="@userId" />
+                            <input type="hidden" name="postId" value="@post.Id" />
+                            <input type="submit" value="Submit" />
+                        }
+                    </details>
+                    <br />
+                </div>
             }
-        </details>
-        <br />
-    </div>
-}
 
