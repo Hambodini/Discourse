@@ -24,8 +24,10 @@
                     <li>@Html.ActionLink("My Profile", "Posts", "Profile")</li>
                     <li>@Html.ActionLink("Friends", "FriendsList", "Friend")</li>
                     <li>@Html.ActionLink("Find People", "Index", "Friend")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Reported Posts", "Index", "Admin")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
